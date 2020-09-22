@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="500" ></canvas>
+</body>
+<script>
+     let canvas=document.getElementById('canvas');
+    let cxt=canvas.getContext('2d');
+       let wx=1;
+       let wy=1;
+       let x=0;
+       let size=4;
+       let y=0;
+       setInterval(()=>{
+         move();
+       },30)
+        function move(){
+            cxt.clearRect(0,0,600,500)
+            cxt.strokeStyle='red'
+       cxt.strokeRect(x,y,60,60);
+       if(wx ==1){//++
+                x+=size;
+                if(x>600-60){wx=0}
+            }else{//--
+                x-=size;
+                if(x<0){wx=1}
+            }
+
+            // 设置方块的y轴位置
+            if(wy ==1){//++
+                y+=size;
+                if(y>500-60){wy=0}
+            }else{//--
+                y-=size;
+                if(y<0){wy=1}
+            }
+     
+          
+            // if(wx==1){
+            //    x +=size;
+            //    if(x>540){
+            //        wx=0
+            //    }
+            // }else{
+            //     x-=size;
+
+            //    if(x<0){
+            //        wx=1
+            //    }
+            // }
+            // if(wy==1){
+            //    y+=size;
+            //    if(y>540){
+            //        wy=0
+            //    }
+            // }else{
+            //     y-=size;
+            //    if(y<0){
+            //        wy=1
+            //    }
+            // }
+        }
+</script>
+</html>

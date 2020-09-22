@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        canvas{
+            /* background-color: #ddd; */
+        }
+        #kk{
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+   <div id="kk">
+        ddddd -->
+         <canvas id='canvas' height="400" width="400">
+    </canvas>
+    </div>
+    <!-- <canvas id='canvas' height="400" width="400">
+
+    </canvas> -->
+
+</body>
+<script>
+    let canvas=document.getElementById('canvas');
+    let kk=document.getElementById('kk');
+    let cxt=canvas.getContext('2d');
+    let i=0;
+    setInterval(()=>{
+       canvas.style.transform= "rotate(" + i + "deg)"
+       i+=10;
+       if(i>=360){
+           i=0;
+       }
+    },30)
+    // console.log(cxt);
+    // if(canvas.getContext('2d')){
+    //     let cxt=canvas.getContext('2d');
+    //     console.log(cxt);
+    // }else{
+    //     console.log('不支持');
+    // }
+       
+    //    cxt.fillStyle='red'
+    // //    cxt.fillRect(0,0,400,46);  
+    //    cxt.fillRect(20,30,50,50);
+    //    cxt.strokeStyle='orange';
+    //    cxt.strokeRect(120,30,50,50);
+       
+    //    cxt.beginPath();
+    //    cxt.rect(100,200,100,100);
+    //    cxt.closePath();
+    //    cxt.fillStyle='blue';
+    //    cxt.fill();
+    //    //
+    //    cxt.beginPath();
+    //    cxt.rect(200,200,100,100);
+    //    cxt.closePath();
+    //    cxt.fillStyle='pink';
+    //    cxt.lineWidth=10
+    //    cxt.stroke()
+    //    //
+    //    cxt.beginPath();
+    //    cxt.moveTo(60,80);
+    //    cxt.lineTo(50,50);
+    //    cxt.lineTo(90,50);
+    //    cxt.closePath();
+    //    cxt.fillStyle='green';
+    //    cxt.fill();
+       //
+    //    cxt.beginPath();
+    //    cxt.moveTo(300,400);
+    //    cxt.lineTo(300,60);//
+    //    cxt.closePath();
+    //    cxt.fillStyle='pink';
+    //    cxt.lineWidth=3
+    //    cxt.stroke()
+       //大圆部分
+    
+//大圆部分
+       cxt.beginPath();
+       cxt.arc(200,200,100,0,Math.PI*2)
+       cxt.closePath();
+       cxt.fillStyle='black';
+       cxt.fill();
+       //半边白色的圆
+       cxt.beginPath();
+       cxt.arc(200,200,100,1.5,Math.PI*1.5,true)
+       cxt.closePath();
+       cxt.fillStyle='white';
+       cxt.fill();
+        //半边小白色的圆
+        cxt.beginPath();
+       cxt.arc(201,150,50,1.5,Math.PI*1.5,false)
+       cxt.closePath();
+       cxt.fillStyle='white';
+       cxt.fill();
+       //下半边黑色的圆
+       cxt.beginPath();
+       cxt.arc(200,250,50,1.5,Math.PI*1.5,true)
+       cxt.closePath();
+       cxt.fillStyle='black';
+       cxt.fill();
+     // 上半边白色的圆里面的黑色的圆
+     cxt.beginPath();
+       cxt.arc(200,150,25,0,Math.PI*2)
+       cxt.closePath();
+       cxt.fillStyle='black';
+       cxt.fill();
+       //下半边黑色圆里面的白色的圆
+       cxt.beginPath();
+       cxt.arc(200,250,25,0,Math.PI*2)
+       cxt.closePath();
+       cxt.fillStyle='white';
+       cxt.fill();
+     //------------------------------------------------------
+     
+
+    </script>
+</html>)

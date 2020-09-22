@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            background-color: rgb(100, 72, 167);
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1>快快快</h1>
+        <h1 class="ec">啥啥啥</h1>
+        <h1>滴滴滴</h1>
+    </div>
+</body>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+     let div=d3.select('#box');
+    //  div.html('ddd')
+    //  div.text('sssddd')
+      let h1=d3.selectAll('h1')
+      div.append('span').text('斤斤计较')
+      div.insert('span','.ec').text('斤ddd斤计较')
+    //   d3.select('.ec').remove()
+    //  console.log(h1);
+    // //   h1.attr('color','red')
+    // //   h1.attr('font-size',15)
+    let data=[1,2,5,6,7,8,8,9];
+    // //  d3.selectAll('h1').data(data).text((d,i)=>{
+    // //     return d+'=============='+i
+    // //  })
+    // d3.selectAll('h1').data(data).exit().remove()
+    d3.selectAll('h1').data(data).enter().append('span').text((d,i)=>{
+        return d+'dddddddddddddddddddddd'+i
+    })
+    // let data=[1,2,3,4,5,6,7];
+    //     d3.selectAll('h1').data(data).enter()
+    //     .append('span')
+    //     .text((d,i)=>{
+    //         return "我是第"+i+"个span标签数据是"+d
+    //     })
+</script>
+</html>

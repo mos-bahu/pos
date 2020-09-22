@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+</body>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<script>
+   let width='500',height='500',num='30';
+   let svg=d3.select('body').append('svg').attr('width',width).attr('height',height);
+
+   let g=svg.append('g').attr('transform',`translate(${num},${num})`)
+   let data=[60,35,45,80,50,20];
+   let text=['英语','数学','化学','物理','语文','地理'];
+   let scaleY=d3.scale.linear().domain([0,d3.max(data)]).range([height-num*2,0])
+   let scalex=d3.scale.ordinal().domain(text).rangeRoundBands([0,height-num*2],0.4,0.3);
+      g.selectAll('rect').data(data).enter().append('rect')
+      .attr('x',(d,i)=>{
+          console.log(scalex(text[i]));
+          return scalex(text[i])
+      })
+      .attr('y',(d,i)=>{
+          console.log(scaleY(d));
+         return scaleY(d)
+      })
+      .attr('width',(d,i)=>{
+          console.log(scalex.rangeBand());
+          return scalex.rangeBand()
+      })
+      .attr('height',(d,i)=>{
+          console.log(scaleY(d));
+          
+          return height-num*2-scaleY(d)
+      })
+      .attr('fill','steelblue')
+      .on('mouseover',function(d,i){
+          d3.select(this).attr('fill','green')
+      })
+       .on('mouseout',function(d,i){
+           console.log('ff');
+           d3.select(this).transition().duration(500).attr('fill','steelblue')
+       })
+       g.selectAll('text').data(data).enter().append('text')
+       .attr('x',(d,i)=>{
+           return scalex(text[i])
+       })
+       .attr('y',(d,i)=>{
+           return scaleY(d)
+       })
+       .attr('dy',-5)
+       .attr('dx',10)
+       .text((d,i)=>{
+           return d
+       })
+       .attr('fill','green')
+       let x=d3.svg.axis().scale(scalex)
+       let y=d3.svg.axis().scale(scaleY).orient('left')
+       g.append('g').attr('class','axis').call(x).attr('transform',`translate(0,${height-num*2})`)
+    //    g.append('g').attr('class','axis').call(x).attr('transform',`translate(0,${height-num*2})`)
+       g.append('g').attr('class','axis').call(y)
+</script>
+</html>

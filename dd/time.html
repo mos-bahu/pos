@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('canvas');
+    let cxt = canvas.getContext('2d');
+
+    setInterval(()=>{
+      show();
+    },1000)
+
+        function show(){
+         //表盘
+         cxt.beginPath();
+        cxt.arc(200,200,150,0,Math.PI*2)
+        cxt.closePath();
+        cxt.fillStyle="white";
+            cxt.fill();
+        cxt.strokeStyle='black';
+        cxt.lineWidth=20;
+        cxt.stroke();
+       
+        //刻度
+     for (var i = 0; i < 12; i++) {
+        kk(Math.PI/180*30*i,-140,-115,6,'black')
+          }
+     for (var i = 0; i < 60; i++) {
+        kk(Math.PI/180*6*i,-140,-125,4,'black')
+          }
+        //刻画文字
+          let arr=[3,4,5,6,7,8,9,10,11,12,1,2]
+           for(let i = 0 ; i < 12 ;i++){
+               let y=Math.sin(Math.PI/180*i*30)*150*0.65+200;
+               let x=Math.cos(Math.PI/180*i*30)*150*0.65+200;
+               cxt.font="20px Arial"
+               cxt.fillStyle='black';
+               cxt.textAlign='center';
+               cxt.textBaseline='middle'
+               cxt.lineWidth = 5;
+               cxt.fillText(arr[i],x,y);
+           }
+            //中心原点
+        cxt.beginPath();
+        cxt.arc(200, 200, 10, 0, Math.PI * 2)
+        cxt.closePath();
+        cxt.lineWidth = 5;
+        cxt.strokeStyle = 'black';
+         cxt.stroke();
+          //绘制时针秒针
+          let da=new Date();
+          let h =da.getHours();
+          let m=da.getMinutes();
+          let s=da.getSeconds();
+          h=h>12? h-12+m/60: h+m/60;
+        //绘制时针
+        kk(Math.PI/180*30*h,-60,20,6,'red');
+        //绘制分针
+        kk(Math.PI/180*6*m,-70,20,4,'orange');
+        //绘制秒针
+        kk(Math.PI/180*6*s,-80,20,3,'blue');
+      
+         //中心小圆点
+          cxt.beginPath();
+         cxt.arc(200, 200, 5,0,Math.PI * 2);
+         cxt.closePath();
+         cxt.lineWidth = 5
+         cxt.fillStyle = 'blue';
+         cxt.fill();
+        }
+
+        
+        //定义的划线的方法：
+        function kk(rotate,sta,end,line,color){  
+            cxt.save();//保存初始化的画布状态（起点永远都是0,0）
+            cxt.translate(200,200);
+            cxt.rotate(rotate);
+            cxt.beginPath();
+            cxt.moveTo(0,sta);
+            cxt.lineTo(0,end);
+            cxt.closePath();
+            cxt.strokeStyle=color;
+            cxt.lineWidth=line;
+            cxt.stroke();
+            cxt.restore();//绘制完每个线段后还原保存的状态
+        }
+    
+   
+</script>
+
+</html>
